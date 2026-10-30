@@ -27,15 +27,21 @@ kan-english add https://www.kan.org.il/content/kan/kan-11/p-984859/
 kan-english run
 ```
 
-`add` reads the show's page, gives it an English title and queues every episode. `run` works through the queue, one episode at a time: download (a minute or so), finding the captions in the picture (a few minutes, it decodes the whole episode), reading and translating them with Claude (about three minutes), and writing the file. An episode takes 6 to 10 minutes on an ordinary laptop. The result lands in `~/KanEnglish/Kan/<Show>/<Show> S01E01 - <Episode title>.mp4`, with the English track embedded as the default subtitle and the Hebrew as a second track, and `.en.srt`, `.he.srt` and `.en.vtt` files next to it. Any player opens the MP4 with the English on (VLC, a TV's own player from a USB stick or a share, Plex, Infuse).
+`add` reads the show's page, gives it an English title and queues every episode. `run` works through the queue, one episode at a time: download (a minute or so), finding the captions in the picture (a few minutes, it decodes the whole episode), reading and translating them with Claude (about three minutes), and writing the file. An episode takes 6 to 10 minutes on an ordinary laptop.
 
-To watch in a browser instead:
+## What you get
+
+The output is the episode as an MP4 in `~/KanEnglish/Kan/<Show>/<Show> S01E01 - <Episode title>.mp4`, with the English embedded as the default subtitle track and the Hebrew as a second track, plus `.en.srt`, `.he.srt` and `.en.vtt` files next to it. Any player opens the MP4 with the English on: VLC, a TV's own player from a USB stick or a network share, Plex, Infuse, Kodi. That file is the product; nothing else is needed.
+
+One thing to know: players draw subtitles at the bottom of the picture, which is exactly where Kan's Hebrew is burned in, so in VLC or on a TV the English lands on top of the Hebrew. In VLC you can move subtitles up once (Tools, Preferences, Subtitles, position) and it stays readable; most TV players have no such setting.
+
+That is what the built-in page is for. It is optional:
 
 ```
 kan-english serve
 ```
 
-opens the page at http://127.0.0.1:8765/: each show with its episodes, a tap plays the episode in the browser with the English placed above the burned-in Hebrew. `kan-english serve --host 0.0.0.0` makes it reachable from a phone or a TV browser on the same Wi-Fi (at `http://<this computer's IP>:8765/`). The page remembers where you left each episode.
+opens http://127.0.0.1:8765/ in the browser: each show with its episodes, a tap plays the episode in the browser with the English placed above the Hebrew band, no app and no overlap. `kan-english serve --host 0.0.0.0` makes it reachable from a phone or a TV browser on the same Wi-Fi (at `http://<this computer's IP>:8765/`). The page remembers where you left each episode. If you only ever play the MP4s elsewhere, you never need to run it.
 
 More:
 
