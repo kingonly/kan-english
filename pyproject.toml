@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kan-english"
+version = "0.1.0"
+description = "English subtitles for Kan 11 (Israeli public TV) shows: reads the Hebrew burned into the picture, translates it with Claude, serves a page with a player"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+dependencies = [
+    "numpy>=1.26",
+    "Pillow>=10.1",
+    "curl_cffi>=0.7",
+    "anthropic>=0.60",
+]
+
+[project.scripts]
+kan-english = "kan_english.cli:main"
+
+[tool.setuptools]
+packages = ["kan_english"]
+
+[tool.setuptools.package-data]
+kan_english = ["*.html"]

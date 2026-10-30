@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0a0b0e">
+<title>Kan 11 in English</title>
+<style>
+:root{--bg:#0a0b0e;--surface:#15171c;--surface2:#1f2229;--line:rgba(255,255,255,.08);--fg:#f4f4f6;--fg2:rgba(244,244,246,.62);--warn:#ffb454;--ring:#fff}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none;outline:0;-webkit-tap-highlight-color:transparent}
+ul{list-style:none;margin:0;padding:0}
+body{padding:16px 16px calc(32px + env(safe-area-inset-bottom));font-size:15px;line-height:1.35}
+header{margin:6px 0 20px}
+header h1{margin:0;font-size:22px;font-weight:800;letter-spacing:-.02em}
+header p{margin:4px 0 0;color:var(--fg2);font-size:13px}
+.show{margin-bottom:34px}
+.head{display:flex;gap:14px;align-items:flex-start}
+.img{flex:0 0 150px;aspect-ratio:1200/630;border-radius:10px;background:var(--surface) center/cover no-repeat;display:block}
+.img.none{background:linear-gradient(145deg,#1b1e25,#111318)}
+.head h2{margin:0;font-size:19px;font-weight:750;letter-spacing:-.02em}
+.he{margin:2px 0 0;color:var(--fg2);font-size:13px;direction:rtl;text-align:left;unicode-bidi:plaintext}
+.syn{margin:8px 0 0;color:var(--fg2);font-size:13px}
+.count{margin:6px 0 0;font-size:12px;color:var(--fg2)}
+.eps{margin-top:12px;border-top:1px solid var(--line)}
+.ep{display:flex;align-items:center;gap:12px;padding:11px 4px;border-bottom:1px solid var(--line)}
+.ep .code{flex:0 0 56px;font-size:12px;font-weight:650;color:var(--fg2)}
+.ep .t{flex:1 1 auto;font-size:15px;font-weight:550;min-width:0}
+.ep .d{font-size:12px;color:var(--fg2)}
+.ep.wait{color:var(--fg2)}
+.tag{display:inline-block;font-size:11px;font-weight:650;line-height:1;padding:4px 7px;border-radius:5px;background:rgba(255,180,84,.16);color:var(--warn);letter-spacing:.02em}
+a.ep:active,a.ep.focus{background:var(--surface2);border-radius:8px}
+.empty{color:var(--fg2)}
+code{background:var(--surface2);padding:2px 5px;border-radius:4px}
+@media (min-width:1000px){
+  html{font-size:clamp(20px,1.55vw,34px)}
+  body{padding:2rem 3rem 3rem;font-size:1rem;max-width:72rem;margin:0 auto}
+  header h1{font-size:1.6rem}
+  header p{font-size:.7rem}
+  .show{margin-bottom:2.4rem}
+  .head{gap:1.2rem}
+  .img{flex-basis:16rem;border-radius:.5rem}
+  .head h2{font-size:1.25rem}
+  .he,.syn,.count{font-size:.7rem}
+  .eps{margin-top:.8rem}
+  .ep{gap:.8rem;padding:.55rem .5rem;border-radius:.4rem}
+  .ep .code{flex-basis:3.4rem;font-size:.65rem}
+  .ep .t{font-size:.85rem}
+  .ep .d{font-size:.65rem}
+  .tag{font-size:.55rem;padding:.2rem .4rem}
+  a.ep.focus{background:var(--surface2);box-shadow:0 0 0 .14rem var(--ring)}
+}
+</style>
+</head>
+<body>
+<header><h1>Kan 11 in English</h1><p>Israeli series from Kan 11 with English subtitles. Tap an episode to play it here, English on top of the picture.</p></header>
+{{SHOWS}}
+<script>
+(function(){
+  // On a TV (wide screen) the remote's up/down move a focus ring over the playable episodes, OK plays.
+  var TV = window.matchMedia('(min-width:1000px)');
+  if (!TV.matches) return;
+  var items = [].slice.call(document.querySelectorAll('a.ep')), cur = 0;
+  if (!items.length) return;
+  function focus(i){
+    items[cur].classList.remove('focus');
+    cur = Math.max(0, Math.min(items.length-1, i));
+    items[cur].classList.add('focus');
+    items[cur].tabIndex = 0;
+    items[cur].focus({preventScroll:true});
+    items[cur].scrollIntoView({block:'center', behavior:'smooth'});
+  }
+  document.addEventListener('keydown', function(ev){
+    var k = ev.keyCode;
+    if (k === 38) focus(cur-1); else if (k === 40) focus(cur+1);
+    else if (k === 13) window.location.href = items[cur].href; else return;
+    ev.preventDefault();
+  });
+  focus(0);
+})();
+</script>
+</body>
+</html>
