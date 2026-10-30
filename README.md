@@ -76,6 +76,6 @@ uv venv && uv pip install -e . pytest
 .venv/bin/pytest
 ```
 
-`tests/test_core.py` pins the page parsing on saved markup, `tests/test_burnin.py` the caption grouping. The same code runs inside the author's home VOD box; this is the standalone cut.
+`tests/test_core.py` pins the page parsing on saved markup, `tests/test_burnin.py` the caption grouping. Built 2026-10-30; the first cut ran inside the author's home VOD box, this is the standalone version.
 
 MIT.
